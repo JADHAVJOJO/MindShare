@@ -67,8 +67,8 @@ const Profile = () => {
       ) : (
         <>
           <div className="images">
-            <img src={data.coverPic} alt="Cover" className="cover" />
-            <img src={data.profilePic} alt="Profile" className="profilePic" />
+            <img src={data.coverpic} alt="Cover" className="cover" />
+            <img src={data.profilepic} alt="Profile" className="profilePic" />
           </div>
           <div className="profileContainer">
             <div className="uInfo">

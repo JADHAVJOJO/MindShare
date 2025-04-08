@@ -13,28 +13,25 @@ $primary-button-color: #1d71b8;
   width: 100%;
   max-width: 350px;
   height: auto;
-  margin: 0px auto;
-  margin-top: 20px;
+  margin: 20px auto 0;
   padding: 12px;
   border-radius: $border-radius;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-//   background: linear-gradient(to right, #4b9cd3, #1d71b8);
-background: #1e1e1e;
+  background: #1e1e1e;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-.header-title{
-    color: #ffffff;
-    font-size: 15px;
-    // background: linear-gradient(to right, #ff69b4, #ff7a33, #8a2be2);
-    // -webkit-background-clip: text;
-    // -webkit-text-fill-color: transparent;
+
+.header-title {
+  color: #ffffff;
+  font-size: 15px;
 }
-// .header-span{
-//     // color: rgb(255, 0, 60);
-// }
+
 // Header Styling
 .weather-header {
   text-align: center;
@@ -53,6 +50,8 @@ background: #1e1e1e;
   background: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   width: 100%;
+  overflow: hidden;
+  flex-wrap: wrap; // ensure wrapping if content overflows
 }
 
 // Individual Columns
@@ -60,6 +59,13 @@ background: #1e1e1e;
   text-align: center;
   color: $primary-text-color;
   flex: 1;
+  min-width: 0; // allows flex children to shrink properly
+  padding: 10px;
+
+  // Prevent text from breaking layout
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .weather-column:first-child {
@@ -77,6 +83,9 @@ background: #1e1e1e;
   font-size: 23px;
   font-weight: bold;
   margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 // Weather Icon
@@ -95,8 +104,21 @@ p {
 // Responsive Design
 @media (max-width: 400px) {
   .weather-container {
-    max-width: 350px;
+    max-width: 100%;
+    padding: 10px;
   }
+
+  .weather-grid-horizontal {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .weather-column {
+    width: 100%;
+    text-align: left;
+    white-space: normal;
+  }
+
   p {
     font-size: 12px;
   }

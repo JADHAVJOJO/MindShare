@@ -1,56 +1,69 @@
 import { useContext, useState } from "react";
 import "./comments.scss";
 import { AuthContext } from "../../context/authContext";
-import { useQuery,useMutation, useQueryClient } from "@tanstack/react-query"; 
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../axios";
 import moment from "moment";
 
-const Comments = ({postId}) => {
-  const [desc,setDesc]=useState("")
+const Comments = ({ postId }) => {
+  const [desc, setDesc] = useState("");
   const { currentUser } = useContext(AuthContext);
-
-  const { isLoading, error, data = [] } = useQuery({
-    queryKey: ["comments", postId],
-    queryFn: () => makeRequest.get("/comments?postId="+postId).then((res) => res.data),
-  });
 
   const queryClient = useQueryClient();
 
+  // Fetch comments for a post
+  const { isLoading, error, data = [] } = useQuery({
+    queryKey: ["comments", postId],
+    queryFn: () =>
+      makeRequest.get("/comments?postId=" + postId).then((res) => res.data),
+  });
+
+  // Add new comment
   const mutation = useMutation({
     mutationFn: (newComment) => makeRequest.post("/comments", newComment),
     onSuccess: () => {
-      queryClient.invalidateQueries(["comments"]);
+      queryClient.invalidateQueries(["comments", postId]); // ✅ fixed
     },
   });
-  
 
-  const handleClick = async (e) => {
+  const handleClick = (e) => {
     e.preventDefault();
+    if (desc.trim() === "") return;
     mutation.mutate({ desc, postId });
     setDesc("");
   };
- 
+
   return (
     <div className="comments">
+      {/* Write comment */}
       <div className="write">
-        <img src={currentUser.profilepic} alt="" />
-        <input type="text" 
-        placeholder="write a comment"
-        value={desc}
-        onChange={(e) => setDesc(e.target.value)}/>
+        <img src={currentUser.profilepic} alt="Profile" />
+        <input
+          type="text"
+          placeholder="Write a comment..."
+          value={desc}
+          onChange={(e) => setDesc(e.target.value)}
+        />
         <button onClick={handleClick}>Send</button>
       </div>
-      {isLoading ? "Loading" :
-       data.map((comments) => (
-        <div className="comment">
-          <img src={comments.profilepic} alt="" />
-          <div className="info">
-            <span>{comments.name}</span>
-            <p>{comments.desc}</p>
+
+      {/* Show comments */}
+      {isLoading ? (
+        <p>Loading comments...</p>
+      ) : data.length === 0 ? (
+        <p>No comments yet. Be the first to comment!</p>
+      ) : (
+        data.map((comment) => (
+          <div className="comment" key={comment.id}>
+            <img src={comment.profilepic} alt="User" />
+            <div className="info">
+              <span>{comment.name}</span>
+              <p>{comment.desc}</p>
+            </div>
+            <span className="date">{moment(comment.createdAt).fromNow()}</span>
           </div>
-          <span className="date">{moment(comments.createdAt).fromNow()}</span>
-        </div>
-      ))}
+        ))
+      )}
     </div>
   );
 };

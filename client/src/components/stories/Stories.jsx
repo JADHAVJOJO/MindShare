@@ -20,7 +20,7 @@ const Stories = () => {
     },
     {
       id: 3,
-      name: "Manisha Kdm",
+      name: "Sai Pallavi",
       img: "https://i.pinimg.com/474x/1f/5b/c7/1f5bc788567c6c722c8d09f0b13a5eac.jpg",
     },
     {

@@ -1,0 +1,103 @@
+@import "../../style.scss";
+
+// Variables
+$primary-text-color: white;
+$secondary-text-color: rgba(255, 255, 255, 0.8);
+$panel-bg-color: rgba(255, 255, 255, 0.1);
+$border-radius: 12px;
+$transition-duration: 1000ms;
+$primary-button-color: #1d71b8;
+
+// Weather Container
+.weather-container {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  margin: 0px auto;
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: $border-radius;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+//   background: linear-gradient(to right, #4b9cd3, #1d71b8);
+background: #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.header-title{
+    color: #ffffff;
+    font-size: 15px;
+    // background: linear-gradient(to right, #ff69b4, #ff7a33, #8a2be2);
+    // -webkit-background-clip: text;
+    // -webkit-text-fill-color: transparent;
+}
+// .header-span{
+//     // color: rgb(255, 0, 60);
+// }
+// Header Styling
+.weather-header {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: $primary-text-color;
+  margin-bottom: 10px;
+}
+
+// Horizontal Grid Layout
+.weather-grid-horizontal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  width: 100%;
+}
+
+// Individual Columns
+.weather-column {
+  text-align: center;
+  color: $primary-text-color;
+  flex: 1;
+}
+
+.weather-column:first-child {
+  text-align: left;
+  padding-left: 10px;
+}
+
+.weather-column:last-child {
+  text-align: right;
+  padding-right: 10px;
+}
+
+// Location Name
+.weather-location {
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+// Weather Icon
+.weather-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3px;
+}
+
+// Text Styling
+p {
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+// Responsive Design
+@media (max-width: 400px) {
+  .weather-container {
+    max-width: 350px;
+  }
+  p {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,438 @@
+/* Reset and Base Styles */
+* {
+    /* margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none; */
+  }
+  
+  :root {
+    --primary-gradient: linear-gradient(135deg, #5a04b5 0%, #2575fc 100%);
+    --secondary-gradient: linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%);
+    --background-color: #f4f7f6;
+    --text-color: #333;
+    --white-translucent: rgba(255, 255, 255, 0.1);
+    --border-color: rgba(255, 255, 255, 0.2);
+        --deep-midnight: #0D1117;
+        --electric-cyan: #00FFFF;
+        --neon-magenta: #FF00FF;
+        --cyber-green: #0FFF50;
+        --dark-slate: #1E2024;
+        --vibrant-purple: #7B2CFF;      
+  }
+  
+  body {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    background: var(--deep-midnight);
+    color: var(--electric-cyan);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  
+  /* Chat Container */
+  .mindshare-chat-container {
+    display: flex;
+    height: 90vh;
+    /* width: 100vw; */
+    overflow: hidden;
+    background: var(--deep-midnight);
+    position: relative;
+  }
+  
+  /* Animated Background */
+  .chat-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+  }
+  
+  .background-bubble {
+    position: absolute;
+    background: var(--white-translucent);
+    border-radius: 50%;
+    animation: float 10s infinite ease-in-out;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-30px); }
+  }
+  
+  /* Chat Wrapper */
+  .mindshare-chat-wrapper {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    /* max-width: 1400px; */
+    margin: 0 auto;
+    background: var(--white-translucent);
+    backdrop-filter: blur(15px);
+    /* border-radius: 16px; */
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    position: relative;
+  }
+  
+  /* Sidebar */
+  .mindshare-sidebar {
+    width: 280px;
+    background: var(--white-translucent);
+    backdrop-filter: blur(15px);
+    border-right: 1px solid var(--border-color);
+    padding: 30px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .sidebar-header {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .animated-logo h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(to right, #ffffff, #e0e0e0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+    animation: pulse 2s infinite;
+  }
+  
+  .animated-logo p {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .room-info {
+    margin-top: 20px;
+    background: var(--white-translucent);
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+  }
+  
+  .room-participants {
+    flex-grow: 1;
+    overflow-y: auto;
+  }
+  
+  .room-participants h4 {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+    color: white;
+  }
+  
+  .participant-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    background: var(--white-translucent);
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+  
+  .participant-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .participant-icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  /* Login Container */
+  .mindshare-login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 50px;
+    text-align: center;
+  }
+  
+  .mindshare-logo {
+    margin-bottom: 40px;
+  }
+  
+  .mindshare-login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .mindshare-input {
+    margin-bottom: 20px;
+    padding: 12px 15px;
+    border: 2px solid var(--neon-magenta);
+    border-radius: 15px;
+    background: rgba(30,32,36,0.7);
+    color: var(--electric-cyan);
+    font-size: 16px;
+    transition: all 0.3s ease;
+  }
+  
+  .mindshare-input:focus {
+    outline: none;
+    border-color: var(--cyber-green);
+    box-shadow: 0 0 25px rgba(15,255,80,0.3);
+    transform: scale(1.03);
+  }
+  
+  .mindshare-join-btn {
+    background: linear-gradient(
+      45deg, 
+      var(--neon-magenta), 
+      var(--vibrant-purple)
+    );
+    color: var(--deep-midnight);
+    border: none;
+    padding: 18px;
+    border-radius: 15px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  }
+  
+  .mindshare-join-btn:hover {
+    transform: translateY(-8px);
+    box-shadow: 
+      0 15px 30px rgba(255,0,255,0.3),
+      0 5px 15px rgba(123,44,255,0.2);
+  }
+  
+  .mindshare-join-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  /* Chat Screen */
+  .mindshare-chat-screen {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .mindshare-chat-header {
+    background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #c3b6eb, #ffed25, #f63b80);
+    padding: 15px 30px;
+    border-bottom: 1px solid var(--border-color);
+    /* color: white; */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .room-notification {
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 255, 0, 0.2);
+    color: white;
+    animation: slideIn 0.5s ease-out;
+  }
+  
+  .mindshare-chat-body {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .mindshare-message {
+    margin-bottom: 15px;
+    max-width: 80%;
+    clear: both;
+    display: flex;
+  }
+  
+  .mindshare-message.sent {
+    align-self: flex-end;
+    text-align: right;
+  }
+  
+  .mindshare-message.received {
+    align-self: flex-start;
+  }
+  
+  .message-content {
+    background: var(--white-translucent);
+    border-radius: 12px;
+    padding: 5px 15px;
+    max-width: 100%;
+  }
+  
+  .message-author {
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.7);
+    display: block;
+    margin-bottom: 2px;
+  }
+  
+  .message-time {
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin-top: 3px;
+    display: block;
+  }
+  
+  .mindshare-chat-input {
+    display: flex;
+    padding: 20px 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-top: 1px solid var(--border-color);
+  }
+  
+  .mindshare-message-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px 0 0 8px;
+    background: var(--white-translucent);
+    color: white;
+    font-size: 16px;
+  }
+  
+  .mindshare-send-btn {
+    background: linear-gradient(
+      45deg, 
+      var(--cyber-green), 
+      var(--electric-cyan)
+    );
+    color: var(--deep-midnight);
+    border: none;
+    padding: 15px 25px;
+    border-radius: 0 15px 15px 0;
+    cursor: pointer;
+  }
+  
+  .mindshare-send-btn:hover {
+    opacity: 0.9;
+  }
+  
+  /* Sidebar Footer and Leave Room Button */
+  .sidebar-footer {
+    margin-top: auto;
+    padding-top: 20px;
+  }
+  
+  .leave-room-btn {
+    width: 100%;
+    padding: 12px 20px;
+    background: var(--secondary-gradient);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  .leave-room-btn:hover {
+    transform: scale(1.05);
+  }
+  
+  .leave-room-btn-mobile {
+    display: none;
+  }
+  
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--white-translucent);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+  }
+  
+  /* Animations */
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+  
+  @keyframes slideIn {
+    from { 
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive Design */
+  @media screen and (max-width: 1024px) {
+    .mindshare-sidebar {
+      display: none;
+    }
+  
+    .mindshare-chat-wrapper {
+      max-width: 100%;
+      border-radius: 0;
+    }
+  
+    .leave-room-btn {
+      display: none;
+    }
+  
+    .leave-room-btn-mobile {
+      display: block;
+      padding: 8px 15px;
+      background: var(--secondary-gradient);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+  }
+  
+  @media screen and (max-width: 600px) {
+    .mindshare-login-container {
+      padding: 0 20px;
+    }
+  
+    .mindshare-input, 
+    .mindshare-join-btn {
+      width: 100%;
+    }
+  
+    .mindshare-chat-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .leave-room-btn-mobile {
+      margin-top: 10px;
+      align-self: flex-start;
+    }
+  }
+  .mindshare-message {
+    animation: pulse 2s infinite alternate;
+  }
